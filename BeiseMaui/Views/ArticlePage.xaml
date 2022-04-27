@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BeiseMaui.ViewModels"
+             xmlns:controls="clr-namespace:BeiseMaui.Controls"
+             Title="{Binding Title}"
+             x:Class="BeiseMaui.ArticlePage"
+             BackgroundColor="#eceef6">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:AticleTemplateSelector x:Key="ArticleTemplateSelector"
+                OneTemplate="{StaticResource OneTemplate}"
+                ThreeTemplate="{StaticResource ThreeTemplate}" />
+            <DataTemplate x:Key="OneTemplate">
+
+                <Frame CornerRadius="8" HasShadow="False" HeightRequest="120"
+                    Padding="10">
+                    <StackLayout Background="white" Orientation="Horizontal" Spacing="10">
+                        <Label FormattedText="{Binding formatted}" WidthRequest ="200" FontSize="Small" FontFamily="PingFang" MaxLines="5" LineBreakMode="TailTruncation" />
+
+                        <StackLayout>
+                            <Frame CornerRadius="5"  IsClippedToBounds="True" HasShadow="False" Padding="0" HeightRequest="100" >
+                                <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="120" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                            </Frame>
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </Frame>
+
+            </DataTemplate>
+            <DataTemplate x:Key="ThreeTemplate">
+
+                <Frame CornerRadius="8" HasShadow="False" HeightRequest="120"
+                    Padding="10">
+                    <StackLayout Background="white">
+                        <Label FormattedText="{Binding formatted}" FontSize="Small" FontFamily="PingFang" MaxLines="2" LineBreakMode="TailTruncation"/>
+                        <StackLayout Orientation="Horizontal" HeightRequest="80">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="0" IsClippedToBounds="True">
+                                    <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                </Frame>
+                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="1" IsClippedToBounds="True">
+                                    <Image  Source="{Binding img_info.imgs[1]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                </Frame>
+                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="2" IsClippedToBounds="True">
+                                    <Image  Source="{Binding img_info.imgs[2]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                </Frame>
+
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <RefreshView x:DataType="local:ArticleViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" RefreshColor="Orange">
+        <CollectionView Margin="10,20,10,10"
+            
+
+            ItemsSource="{Binding Items}"
+            RemainingItemsThreshold="2" 
+            RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}" 
+            ItemTemplate="{StaticResource ArticleTemplateSelector}" >
+
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
