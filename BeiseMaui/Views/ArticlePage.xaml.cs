@@ -12,7 +12,7 @@ namespace BeiseMaui
 {
     public partial class ArticlePage : ContentPage
     {
-        ArticleViewModel _viewModel;
+        readonly ArticleViewModel _viewModel;
 
         public ArticlePage(ArticleViewModel vm)
         {

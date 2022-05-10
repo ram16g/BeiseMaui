@@ -10,9 +10,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <controls:AticleTemplateSelector x:Key="ArticleTemplateSelector"
-                OneTemplate="{StaticResource OneTemplate}"
-                ThreeTemplate="{StaticResource ThreeTemplate}" />
+            
             <DataTemplate x:Key="OneTemplate">
 
                 <Frame CornerRadius="8" HasShadow="False" HeightRequest="120"
@@ -62,6 +60,9 @@
                 </Frame>
 
             </DataTemplate>
+            <controls:AticleTemplateSelector x:Key="ArticleTemplateSelector"
+                OneTemplate="{StaticResource OneTemplate}"
+                ThreeTemplate="{StaticResource ThreeTemplate}" />
             
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -76,8 +77,7 @@
             RemainingItemsThreshold="2" 
             RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}" 
             ItemTemplate="{StaticResource ArticleTemplateSelector}" >
-
-
+            
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>

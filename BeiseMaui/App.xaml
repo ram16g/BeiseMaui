@@ -26,7 +26,6 @@
     <Application.MainPage>
         <Shell>
             <TabBar x:Name="PhoneTabs">
-
                 <Tab Title="Home" Icon="icon_feed.png" Route="main">
                     <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
                 </Tab>
