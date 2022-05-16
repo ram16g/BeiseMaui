@@ -50,23 +50,8 @@ namespace BeiseMaui.ViewModels
 
                 foreach (var article in articles.data.list)
                 {
-                    FormattedString formatted = new FormattedString();
-                    formatted.Spans.Add(new Span
-                    {
-                        Text = "#" + article.title + "#",
-                        TextColor = Color.FromRgb(253, 156, 12)
-                    });
-
-                    formatted.Spans.Add(new Span
-                    {
-                        Text = article.description,
-                        TextColor = Colors.Black
-                    }) ;
-
-                    article.formatted = formatted;
-
+                    article.formatted = FormatText(article);
                     Items.Add(article);
-                    //Device.BeginInvokeOnMainThread(() => Items.Add(article));
                 }
 
             }
@@ -80,6 +65,8 @@ namespace BeiseMaui.ViewModels
                 firstLoad = false;
             }
         }
+
+        
 
 
         [ICommand]
@@ -100,23 +87,9 @@ namespace BeiseMaui.ViewModels
 
                 foreach (var article in articles.data.list)
                 {
-                    FormattedString formatted = new FormattedString();
-                    formatted.Spans.Add(new Span
-                    {
-                        Text = "#" + article.title + "#",
-                        TextColor = Color.FromRgb(253, 156, 12)
-                    });
 
-                    formatted.Spans.Add(new Span
-                    {
-                        Text = article.description,
-                        TextColor = Colors.Black
-                    }) ;
-
-                    article.formatted = formatted;
-
-                    Items.Add(article);
-                    //Device.BeginInvokeOnMainThread(() => Items.Add(article));
+                    article.formatted = FormatText(article);
+                    Items.Add(article); 
                 }
 
             }
@@ -128,6 +101,29 @@ namespace BeiseMaui.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+
+        private FormattedString FormatText(ArticleListResult.Item article)
+        {
+            FormattedString formatted = new FormattedString();
+            formatted.Spans.Add(new Span
+            {
+                Text = "#" + article.title + "#",
+                TextColor = Color.FromRgb(253, 156, 12),
+                FontFamily = "PingFang-Regular",
+                FontSize = 15
+            }); ;
+
+            formatted.Spans.Add(new Span
+            {
+                Text = article.description,
+                TextColor = Colors.Black,
+                FontFamily = "PingFang-Regular",
+                FontSize = 15
+            });
+
+            return formatted;
         }
 
     }

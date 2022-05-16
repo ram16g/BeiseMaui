@@ -5,7 +5,8 @@
              xmlns:controls="clr-namespace:BeiseMaui.Controls"
              Title="{Binding Title}"
              x:Class="BeiseMaui.ArticlePage"
-             BackgroundColor="#eceef6">
+             BackgroundColor="#eceef6"
+             Padding="10">
 
 
     <ContentPage.Resources>
@@ -13,10 +14,10 @@
             
             <DataTemplate x:Key="OneTemplate">
 
-                <Frame CornerRadius="8" HasShadow="False" HeightRequest="120"
+                <Frame CornerRadius="8" HasShadow="False" HeightRequest="180"
                     Padding="10">
                     <StackLayout Background="white" Orientation="Horizontal" Spacing="10">
-                        <Label FormattedText="{Binding formatted}" WidthRequest ="200" FontSize="Small" FontFamily="PingFang" MaxLines="5" LineBreakMode="TailTruncation" />
+                        <Label FormattedText="{Binding formatted}" WidthRequest ="200"  MaxLines="5" LineBreakMode="TailTruncation" />
 
                         <StackLayout>
                             <Frame CornerRadius="5"  IsClippedToBounds="True" HasShadow="False" Padding="0" HeightRequest="100" >
@@ -30,12 +31,12 @@
             </DataTemplate>
             <DataTemplate x:Key="ThreeTemplate">
 
-                <Frame CornerRadius="8" HasShadow="False" HeightRequest="120"
+                <Frame CornerRadius="8" HasShadow="False" HeightRequest="180"
                     Padding="10">
                     <StackLayout Background="white">
-                        <Label FormattedText="{Binding formatted}" FontSize="Small" FontFamily="PingFang" MaxLines="2" LineBreakMode="TailTruncation"/>
-                        <StackLayout Orientation="Horizontal" HeightRequest="80">
-                            <Grid>
+                        <Label FormattedText="{Binding formatted}"  MaxLines="2" LineBreakMode="TailTruncation"/>
+                        <StackLayout Orientation="Horizontal" HeightRequest="90">
+                            <Grid RowSpacing="10" ColumnSpacing="3" Padding="0,8">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
@@ -45,13 +46,13 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="0" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                    <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
                                 </Frame>
                                 <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="1" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[1]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                    <Image  Source="{Binding img_info.imgs[1]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
                                 </Frame>
                                 <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="2" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[2]}" WidthRequest="120"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+                                    <Image  Source="{Binding img_info.imgs[2]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
                                 </Frame>
 
                             </Grid>
