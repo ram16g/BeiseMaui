@@ -1,70 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BeiseMaui.Models"
              xmlns:local="clr-namespace:BeiseMaui.ViewModels"
              xmlns:controls="clr-namespace:BeiseMaui.Controls"
              Title="{Binding Title}"
              x:Class="BeiseMaui.ArticlePage"
-             BackgroundColor="#eceef6"
+             BackgroundColor="#f8f8f8"
              Padding="10">
 
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            
+
             <DataTemplate x:Key="OneTemplate">
 
-                <Frame CornerRadius="8" HasShadow="False" HeightRequest="180"
+                <Frame CornerRadius="8" HasShadow="False"
                     Padding="10">
-                    <StackLayout Background="white" Orientation="Horizontal" Spacing="10">
-                        <Label FormattedText="{Binding formatted}" WidthRequest ="200"  MaxLines="5" LineBreakMode="TailTruncation" />
 
-                        <StackLayout>
-                            <Frame CornerRadius="5"  IsClippedToBounds="True" HasShadow="False" Padding="0" HeightRequest="100" >
-                                <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="120" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
-                            </Frame>
+                    <StackLayout Background="white" Orientation="Horizontal" Spacing="10">
+                        <Label FormattedText="{Binding formatted}" WidthRequest ="220"  LineHeight="1.1" MaxLines="5" LineBreakMode="TailTruncation" />
+                        <StackLayout Padding="0,8">
+                            <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="115" HeightRequest="90" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,115,90"/>
+                                </Image.Clip>
+                            </Image>
+                            
                         </StackLayout>
                         
                     </StackLayout>
+                    
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDetailCommand, Source={RelativeSource AncestorType={x:Type local:ArticleViewModel}}}"
+                                              CommandParameter="{Binding }" />
+                    </Frame.GestureRecognizers>
+
                 </Frame>
 
             </DataTemplate>
             <DataTemplate x:Key="ThreeTemplate">
 
-                <Frame CornerRadius="8" HasShadow="False" HeightRequest="180"
-                    Padding="10">
+                <Frame CornerRadius="8" HasShadow="False" 
+                    Padding="10,15">
                     <StackLayout Background="white">
-                        <Label FormattedText="{Binding formatted}"  MaxLines="2" LineBreakMode="TailTruncation"/>
-                        <StackLayout Orientation="Horizontal" HeightRequest="90">
-                            <Grid RowSpacing="10" ColumnSpacing="3" Padding="0,8">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="0" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[0]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
-                                </Frame>
-                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="1" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[1]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
-                                </Frame>
-                                <Frame CornerRadius="5" HasShadow="False" Padding="0" Grid.Column="2" IsClippedToBounds="True">
-                                    <Image  Source="{Binding img_info.imgs[2]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
-                                </Frame>
+                        <Label FormattedText="{Binding formatted}" LineHeight="1.1" MaxLines="2" LineBreakMode="TailTruncation"/>
+                        <Grid RowSpacing="10" ColumnSpacing="3" Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="16"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding img_info.imgs[0]}"  WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,115,90"/>
+                                </Image.Clip>
+                            </Image>
 
-                            </Grid>
-                        </StackLayout>
+                            <Image Grid.Row="0" Grid.Column="1" Source="{Binding img_info.imgs[1]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry  CornerRadius="5" Rect="0,0,115,90"/>
+                                </Image.Clip>
+                            </Image>
+                            <Image Grid.Row="0" Grid.Column="2" Source="{Binding img_info.imgs[2]}" WidthRequest="115"  HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,115,90"/>
+                                </Image.Clip>
+                            </Image>
+                            <Label Grid.Row="1" Grid.Column="0" Text="他日再见" HorizontalTextAlignment="Center" TextColor="Black" FontFamily="PingFang-Regular" FontSize="13"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="1355人阅读" HorizontalTextAlignment="Center" TextColor="Black" FontFamily="PingFang-Regular" FontSize="13"/>
+                            <Label Grid.Row="1" Grid.Column="2" Text="2022-05-23" HorizontalTextAlignment="Center" TextColor="Black" FontFamily="PingFang-Regular" FontSize="13"/>
+                        </Grid>
                     </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDetailCommand, Source={RelativeSource AncestorType={x:Type local:ArticleViewModel}}}"
+                                              CommandParameter="{Binding }" />
+                    </Frame.GestureRecognizers>
+
                 </Frame>
 
             </DataTemplate>
             <controls:AticleTemplateSelector x:Key="ArticleTemplateSelector"
                 OneTemplate="{StaticResource OneTemplate}"
                 ThreeTemplate="{StaticResource ThreeTemplate}" />
-            
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -72,13 +95,12 @@
 
     <RefreshView x:DataType="local:ArticleViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" RefreshColor="Orange">
         <CollectionView Margin="10,20,10,10"
-            
-
             ItemsSource="{Binding Items}"
             RemainingItemsThreshold="2" 
             RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}" 
-            ItemTemplate="{StaticResource ArticleTemplateSelector}" >
-            
+            ItemTemplate="{StaticResource ArticleTemplateSelector}" 
+            SelectionMode="None">
+
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>

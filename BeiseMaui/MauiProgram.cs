@@ -1,6 +1,7 @@
 ﻿
 using BeiseMaui.Services;
 using BeiseMaui.ViewModels;
+using BeiseMaui.Views;
 
 namespace BeiseMaui;
 
@@ -16,15 +17,21 @@ public static class MauiProgram
                 fonts.AddFont("PingFang-Regular.ttf", "PingFang-Regular.ttf");
                 fonts.AddFont("PingFang-Bold.ttf", "PingFang-Bold.ttf");
                 fonts.AddFont("PingFang-Light.ttf", "PingFang-Light.ttf");
+                fonts.AddFont("PingFang-Medium.ttf", "PingFang-Medium.ttf");
             });
 
-		builder.Services.AddSingleton<IArticleService,ArticleService>();
+
+        AllowMultiLineTruncationOnAndroid();
+
+
+        builder.Services.AddSingleton<IArticleService,ArticleService>();
 		builder.Services.AddSingleton<ArticleViewModel>();
 		builder.Services.AddSingleton<ArticlePage>();
 
-		AllowMultiLineTruncationOnAndroid();
 
-		return builder.Build();
+        builder.Services.AddSingleton<NewPage1>();
+
+        return builder.Build();
 	}
 
 

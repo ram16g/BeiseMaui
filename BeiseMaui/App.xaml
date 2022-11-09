@@ -26,10 +26,10 @@
     <Application.MainPage>
         <Shell>
             <TabBar x:Name="PhoneTabs">
-                <Tab Title="Home" Icon="icon_feed.png" Route="main">
+                <Tab Title="Home" Icon="icon_feed.png" Route="MainPage">
                     <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
                 </Tab>
-                <Tab Title="Favorites" Icon="icon_feed.png" Route="articles">
+                <Tab Title="Favorites" Icon="icon_feed.png" Route="ArticlePage">
                     <ShellContent ContentTemplate="{DataTemplate local:ArticlePage}"/>
                 </Tab>
             </TabBar>

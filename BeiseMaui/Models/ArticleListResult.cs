@@ -8,11 +8,11 @@ namespace BeiseMaui.Models
     {
         public string err_code { get; set; }
         public string msg { get; set; }
-        public DateItem data { get; set; }
+        public DataItem data { get; set; }
 
 
 
-        public class DateItem
+        public class DataItem
         {
             public string has_next { get; set; }
             public List<Item> list { get; set; }

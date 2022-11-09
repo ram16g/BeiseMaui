@@ -1,6 +1,7 @@
 ﻿using BeiseMaui.Models;
 using BeiseMaui.Services;
 using BeiseMaui.ViewModels;
+using BeiseMaui.Views;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -34,9 +35,9 @@ namespace BeiseMaui.ViewModels
                 return;
             }
             await LoadItems();   
-        }
+       } 
 
-        [ICommand]
+        [RelayCommand]
         async Task LoadItems()
         {
             IsBusy = true;
@@ -69,7 +70,7 @@ namespace BeiseMaui.ViewModels
         
 
 
-        [ICommand]
+        [RelayCommand]
         async Task LoadMore()
         {
             if (string.IsNullOrEmpty(nextPageUrl))
@@ -88,7 +89,7 @@ namespace BeiseMaui.ViewModels
                 foreach (var article in articles.data.list)
                 {
 
-                    article.formatted = FormatText(article);
+                    article.formatted = ArticleViewModel.FormatText(article);
                     Items.Add(article); 
                 }
 
@@ -104,16 +105,16 @@ namespace BeiseMaui.ViewModels
         }
 
 
-        private FormattedString FormatText(ArticleListResult.Item article)
+        private static FormattedString FormatText(ArticleListResult.Item article)
         {
-            FormattedString formatted = new FormattedString();
+            FormattedString formatted = new();
             formatted.Spans.Add(new Span
             {
                 Text = "#" + article.title + "#",
                 TextColor = Color.FromRgb(253, 156, 12),
-                FontFamily = "PingFang-Regular",
+                FontFamily = "PingFang-Bold",
                 FontSize = 15
-            }); ;
+            });
 
             formatted.Spans.Add(new Span
             {
@@ -125,6 +126,16 @@ namespace BeiseMaui.ViewModels
 
             return formatted;
         }
+
+
+        [RelayCommand]
+        async Task GoToDetail(ArticleListResult.Item article)
+        {
+            var navParams = new Dictionary<string, object> { { "article", article } };
+            await Shell.Current.GoToAsync(nameof(NewPage1),true, navParams);
+        }
+
+
 
     }
 }
